@@ -14,7 +14,9 @@ const createContact=(req,res)=>{
     console.log("the request body is ",req.body);
     const {name,email,phone} = req.body;
     if(!name || !email || !phone){
-        return res.status(400).json({message:"Please enter all fields"})};
+         res.status(400);
+         throw new Error("Please enter all fields")
+        };
     res.status(201).json({message:`create contact of`});
 }
 //@des Get contact
@@ -38,7 +40,7 @@ const updateContact=(req,res)=>{
 //@access Public
 
 const deleteContact=(req,res)=>{
-    res.status(200).json({message:`Delete  contact for ${req.params.id}`});
+    res.status(400).json({message:`Delete  contact for ${req.params.id}`});
 }
 
 
