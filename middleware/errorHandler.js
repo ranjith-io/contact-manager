@@ -25,7 +25,7 @@ const errorHandler = (err, req, res, next) => {
                 break;
 
             default:
-                console.log("no error");
+                console.log("No Error");
                 break;
         }};
 
