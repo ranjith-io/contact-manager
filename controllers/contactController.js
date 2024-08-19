@@ -19,7 +19,7 @@ const createContact=asyncHandler(async(req,res)=>{
     if(!name || !email || !phone){
          res.status(400);
          console.log("Please enter all fields");
-         throw new Error("Please enter all fields");
+         return res.json("Please enter all fields");
         };
     console.log('CONTACT CREATED');
     const contact = await Contact.create({
@@ -40,7 +40,7 @@ const getContact=asyncHandler(async(req,res)=>{
     if (!contact){
         console.log('contact not found');
         res.status(404);
-        throw new Error('Contact not found');
+        return res.json('Contact not found');
     }
     res.status(200).json(contact);
 });
@@ -54,7 +54,8 @@ const updateContact=asyncHandler(async(req,res)=>{
     if (!contact){
         console.log('contact not found');
         res.status(404);
-        throw new Error('Contact not found');
+        return res.json('Contact not found');
+        
     }
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id,req.body,{new:true});
     res.status(200).json(updatedContact);
@@ -69,10 +70,10 @@ const deleteContact=asyncHandler(async(req,res)=>{
     if (!contact){
         console.log('contact not found');
         res.status(404);
-        throw new Error('Contact not found');
+        return res.json('Contact not found');
     }
     await Contact.findByIdAndDelete(req.params.id);
-    res.status(400).json(contact);
+    res.status(200).json(contact);
 });
 
 
