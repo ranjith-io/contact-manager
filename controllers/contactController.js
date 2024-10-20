@@ -23,7 +23,7 @@ const createContact=asyncHandler(async(req,res)=>{
         };
     console.log('CONTACT CREATED');
     const contact = await Contact.create({
-        // console.log('contact is inside'),
+        // console.log('contact is inside'),z
         name,
         email,
         phone,
